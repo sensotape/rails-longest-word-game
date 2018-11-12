@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="custom-container">
+    <h1>Result</h1>
+    <% if @result[:word_json]['found'] && @result[:check_grid] %>
+      <p><strong>Congratulations!</strong> <%= @result[:word].upcase %> is a valid English word!</p>
+      <p>Your score is <%= (@result[:word_json]['length'].to_f + 1.0 / @result[:time]).round(2) %></p>
+    <% elsif @result[:word_json]['found'] == false %>
+      <p>Sorry, but <strong><%= @result[:word].upcase %></strong> does not seem to be a valid English word...</p>
+    <% elsif @result[:check_grid] == false %>
+      <p>Sorry, but <strong><%= @result[:word].upcase %></strong> can't be build out of <%= @result[:grid].join(', ') %></p>
+    <% end %>
+    <%= link_to "Play new game", new_path %>
+  </div>
+</div>

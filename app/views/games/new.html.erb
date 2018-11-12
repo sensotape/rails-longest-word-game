@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="custom-container">
+    <h1>New game</h1>
+    <div class="letters">
+      <% @letters.each do |letter| %>
+        <span class="letter"><%= letter %></span>
+      <% end %>
+    </div>
+    <div class="answer">
+      <label for="answer"></label>
+      <form action="/score" method="post" class="input-group mb-3">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= hidden_field_tag :grid, @letters %>
+        <%= hidden_field_tag :start_time, Time.now %>
+        <input type="text" placeholder="Your answer" name="answer" class="form-control">
+        <div class="input-group-append">
+          <input type="submit" value="Play" class="btn btn-outline-secondary" id="play">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
